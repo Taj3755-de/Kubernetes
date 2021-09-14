@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-registry-deployment
+  labels:
+    app: config-registry
+spec:
+  selector:
+    matchLabels:
+      app: config-registry
+  template:
+    metadata:
+      labels:
+        app: config-registry
+    spec:
+      containers:
+      - name: config-registry
+        image: hub.regsitry.local:5000/microservice-update:latest
+        env:
+        - name: HOST
+          value: "pgdb.local"
+        - name: PORT
+          value: "5432"
+        - name: PASSWORD
+          value: "Strongpwd"
+        - name: USERNAME
+          value: "postgres"
+        - name: MS_PORT
+          value: "3043"
+        - name: DBNAME
+          value: "sample"
+        - name: SCHEMANAME
+          value: "sample"
+        ports:
+        - containerPort: 80
+        resources: 
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 500m
+            memory: 250Mi
+     
