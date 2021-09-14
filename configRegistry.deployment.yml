@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: config-registry-deployment
+  name: sample-deployment
   labels:
-    app: config-registry
+    app: sample
 spec:
   selector:
     matchLabels:
-      app: config-registry
+      app: sample
   template:
     metadata:
       labels:
-        app: config-registry
+        app: sample
     spec:
       containers:
-      - name: config-registry
+      - name: sample
         image: hub.regsitry.local:5000/microservice-update:latest
         env:
         - name: HOST
